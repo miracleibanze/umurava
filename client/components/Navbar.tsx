@@ -3,21 +3,28 @@
 import { usePathname } from "next/navigation";
 import { Umuravalogo } from "@public";
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useEffect, useState, FC } from "react";
 import Link from "next/link";
 
-const Navbar = () => {
-  const [openNavigation, setOpenNavigation] = useState(false);
+interface NavLink {
+  name: string;
+  link: string;
+}
+
+const Navbar: FC = () => {
+  const [openNavigation, setOpenNavigation] = useState<boolean>(false);
   const toggleNavigation = () => {
     setOpenNavigation(!openNavigation);
   };
-  const navLinks = [
+
+  const navLinks: NavLink[] = [
     { name: "Home", link: "/" },
     { name: "Challenge & hackathons", link: "/challenges&Hackathons" },
     { name: "For Education Institution", link: "/education-institutions" },
     { name: "About Us", link: "/about" },
     { name: "Contact Us", link: "/contact" },
   ];
+
   const pathname = usePathname();
 
   useEffect(() => {

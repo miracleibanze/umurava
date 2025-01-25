@@ -31,9 +31,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           rel="stylesheet"
         />
       </head>
-      <body className="text-black/90 w-full max-w-screen-3xl mx-auto">
+      <body className="text-black/90 w-full max-w-screen-5xl mx-auto">
         {showNavbar && <Navbar />}
+        <div className='flex-1 h-full min-h-[50vh]'>
+
         {children}
+        </div>
         {showNavbar && <Footer />}
       </body>
     </html>

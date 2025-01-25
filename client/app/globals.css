@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 body {
-  @apply font-work;
+  @apply font-work h-full min-h-screen flex flex-col;
 }
 
 @layer components {

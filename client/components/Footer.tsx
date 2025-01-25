@@ -5,7 +5,7 @@ import { footerLogo } from "@public";
 
 const Footer = () => {
   return (
-    <footer className="bg-darkBlue text-white py-6 px-8">
+    <footer className="relative bottom-0 bg-darkBlue text-white py-6 px-8">
       <div className="container mx-auto mb-6 md:mb-0 flex items-center justify-between border-b py-8 border-white/20">
         <Image src={footerLogo} alt="Logo" className="w-16" />
         <div className="flex gap-3 items-center text-md text-darkBlue">
@@ -57,7 +57,7 @@ const Footer = () => {
         </div>
 
         <div className="w-full max-w-md">
-          <p className="h5 font-semibold">
+          <p className="body-1 font-semibold">
             Join our newsletter to keep up to date with us!
           </p>
           <div className="flex mt-2 bg-white p-2 rounded-md">
