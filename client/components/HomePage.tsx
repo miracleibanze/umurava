@@ -10,11 +10,30 @@ import {
   signup,
   students,
 } from "@public";
-import { useState } from "react";
-import Heading from "./designs/Heading";
+import { useState, FC } from "react";
 import Image from "next/image";
+import Heading from "@components/designs/Heading";
 
-const SkillChallenges = [
+interface Challenge {
+  title: string;
+  skills: string[];
+  difficulty: string;
+  deadline: string;
+}
+
+interface Benefit {
+  title: string;
+  description: string;
+  icon: string;
+}
+
+interface Testimonial {
+  name: string;
+  title: string;
+  testimonial: string;
+}
+
+const SkillChallenges: string[] = [
   "UI/UX Design",
   "Data Science",
   "Graphic Design",
@@ -26,7 +45,7 @@ const SkillChallenges = [
   "Digital Marketing & Communication",
 ];
 
-const challenges = [
+const challenges: Challenge[] = [
   {
     title: "Design a Dashboard for SokoFund",
     skills: ["UX Design", "Research", "User Flow", "Sketch", "Figma"],
@@ -47,15 +66,15 @@ const challenges = [
   },
 ];
 
-const benefits = [
+const benefits: Benefit[] = [
   {
     title: "Enhance Your Employment Path",
     description:
-      "Network with other talented individuals and Learn from their experiences.",
+      "Network with other talented individuals and learn from their experiences.",
     icon: "fa-briefcase",
   },
   {
-    title: "Earn Recognition and Prices",
+    title: "Earn Recognition and Prizes",
     description:
       "Gain valuable experience and knowledge to advance your career in the digital economy.",
     icon: "fa-clipboard-list",
@@ -63,73 +82,61 @@ const benefits = [
   {
     title: "Personal Growth",
     description:
-      "Challenge yourself, Learn new skills, and grow you professional network.",
+      "Challenge yourself, learn new skills, and grow your professional network.",
     icon: "fa-chart-line",
   },
   {
     title: "Learn from Industry Experts",
     description:
-      "Acces valuable insights and guidance from experienced professionals in the digital career field and spaces.",
+      "Access valuable insights and guidance from experienced professionals in the digital career field and spaces.",
     icon: "fa-robot",
   },
 ];
 
-const ChallengeCard = ({ title, skills, difficulty, deadline }) => {
-  return (
-    <div>
-      <div className="border border-blue-500/20 rounded-t-lg p-6">
-        <div className="flex justify-between items-center mb-4 w-full aspect-video rounded-lg overflow-hidden relative">
-          <Image
-            src={umurava}
-            alt="Umurava Logo"
-            className="absolute inset-0"
-          />
-        </div>
-        <h3 className="body-1 font-semibold mb-2 leading-tight">{title}</h3>
-        <p className="text-sm font-semibold">
-          Skills Needed:
-          <br />
-          {skills.map((item, index) => (
-            <button
-              className="button m-1 border border-primary/60 !px-1 !py-0 !text-sm text-primary/70"
-              key={index}
-            >
-              {item}
-            </button>
-          ))}
-        </p>
-        <p className="text-sm">
-          <b>Difficulty Level:</b> {difficulty}
-        </p>
-        <p className="text-sm">
-          <b>Deadline:</b> {deadline}
-        </p>
+const ChallengeCard: FC<Challenge> = ({
+  title,
+  skills,
+  difficulty,
+  deadline,
+}) => (
+  <>
+    <div className="border border-blue-500/20 rounded-t-lg p-6">
+      <div className="flex justify-between items-center mb-4 w-full aspect-video rounded-lg overflow-hidden relative">
+        <Image
+          src="/path-to-image.jpg" // Ensure this is the correct path
+          alt="Umurava Logo"
+          className="absolute inset-0"
+          width={500}
+          height={500}
+        />
       </div>
-      <div className="bg-white text-blue-500 px-4 py-2 rounded-b-md border border-blue-500/20 border-t-none w-full">
-        <button className="button bg-primary text-white">View Challenge</button>
-      </div>
+      <h3 className="body-1 font-semibold mb-2 leading-tight">{title}</h3>
+      <p className="text-sm font-semibold">
+        Skills Needed:
+        <br />
+        {skills.map((item, index) => (
+          <button
+            className="button m-1 border border-primary/60 !px-1 !py-0 !text-sm text-primary/70"
+            key={index}
+          >
+            {item}
+          </button>
+        ))}
+      </p>
+      <p className="text-sm">
+        <b>Difficulty Level:</b> {difficulty}
+      </p>
+      <p className="text-sm">
+        <b>Deadline:</b> {deadline}
+      </p>
     </div>
-  );
-};
-const testimonials = [
-  {
-    name: "Manzi Jack",
-    title: "Product Designer, Kigali",
-    testimonial: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-  },
-  {
-    name: "Cyuzuzo Peter",
-    title: "Marketing manager, Kigali",
-    testimonial: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-  },
-  {
-    name: "Mukunzi James",
-    title: "Software developer, Kigali",
-    testimonial: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-  },
-];
+    <div className="bg-white text-blue-500 px-4 py-2 rounded-b-md border border-blue-500/20 border-t-none w-full">
+      <button className="button bg-primary text-white">View Challenge</button>
+    </div>
+  </>
+);
 
-const TestimonialCard = ({ name, title, testimonial }) => (
+const TestimonialCard: FC<Testimonial> = ({ name, title, testimonial }) => (
   <div className="min-w-[25rem] max-w-[25rem] px-5 border border-zinc-400 rounded-lg py-8">
     <div className="w-full rounded-lg aspect-video bg-primary mb-4 flex items-center justify-center">
       <span className="flex items-center justify-center bg-white/50 p-4 rounded-full aspect-square">
@@ -145,8 +152,29 @@ const TestimonialCard = ({ name, title, testimonial }) => (
     </div>
   </div>
 );
-const HomePage = () => {
-  const [skillChallenge, setSkillChallenge] = useState(0);
+
+
+const testimonials: Testimonial[] = [
+  {
+    name: "Manzi Jack",
+    title: "Product Designer, Kigali",
+    testimonial: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+  },
+  {
+    name: "Cyuzuzo Peter",
+    title: "Marketing Manager, Kigali",
+    testimonial: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+  },
+  {
+    name: "Mukunzi James",
+    title: "Software Developer, Kigali",
+    testimonial: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+  },
+];
+
+const HomePage: FC = () => {
+  const [skillChallenge, setSkillChallenge] = useState<number>(0);
+
   return (
     <>
       <header className="container mx-auto bg-white pb-10 md:pt-0 pt-10 px-5 md:px-20 flex flex-col md:flex-row items-center justify-between">
@@ -163,20 +191,19 @@ const HomePage = () => {
             Get Started
           </button>
         </div>
-        <div className="flex md:w-1/2 mt-8 md:mt-0 items-end gap-x-4 md:aspect-square w-full ">
+        <div className="flex md:w-1/2 mt-8 md:mt-0 items-end gap-x-4 md:aspect-square w-full">
           <Image
             src={Image2}
-            alt="team"
+            alt="Team"
             className="w-[55%] aspect-[6/9] md:aspect-[18/33] lg:aspect-[9/14]"
           />
           <Image
             src={image1}
-            alt="team"
+            alt="Team"
             className="w-[45%] aspect-9/15 md:aspect-[1/2] lg:aspect-[9/15]"
           />
         </div>
       </header>
-
       {/* Second Section */}
       <section className="container mx-auto py-12 px-5 md:px-20">
         <Heading
@@ -270,7 +297,7 @@ const HomePage = () => {
             </button>
           ))}
       </section>
-      <section className="container flex flex-wrap gap-3 justify-center mx-auto py-2 md:px-6 mb-12">
+      <section className="container flex flex-wrap gap-3 justify-center mx-auto py-2 md:px-6 mb-12 max-w-3xl">
         {SkillChallenges.map((item, index) => (
           <button
             key={index}
@@ -290,7 +317,7 @@ const HomePage = () => {
         <div className="md:w-1/2 w-full flex flex-col items-start gap-8 px-4 py-8">
           <div className="bg-white py-6 px-4 rounded-md w-max mb-4 mt-8">
             <span className="w-7 aspect-square rounded-full p-2 font-bold bg-black text-white">
-              <font color="green">S</font>f.
+            <span style={{ color: 'green' }}>S</span>f.
             </span>
           </div>
           <p className="body-2 text-zinc-600 w-full max-w-md">
@@ -367,11 +394,11 @@ const HomePage = () => {
         </section>
       </section>
       <section className="container mx-auto py-16 px-4">
-        <h2 className="h2 font-bold mb-2">
+        <h2 className="h2 font-bold mb-2 px-3">
           Users are in Love with Skills <br className="max-md:hidden" />
           Challenges Program
         </h2>
-        <p className="text-gray-500 text-sm mb-12">
+        <p className="text-gray-500 text-sm mb-12 px-4">
           See what our clients say about working with us. Their success{" "}
           <br className="max-md:hidden" />
           speaks for our dedication and expertise.

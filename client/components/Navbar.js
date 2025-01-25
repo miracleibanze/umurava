@@ -3,7 +3,8 @@
 import { usePathname } from "next/navigation";
 import { Umuravalogo } from "@public";
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import Link from "next/link";
 
 const Navbar = () => {
   const [openNavigation, setOpenNavigation] = useState(false);
@@ -19,28 +20,37 @@ const Navbar = () => {
   ];
   const pathname = usePathname();
 
+  useEffect(() => {
+    setOpenNavigation(false);
+  }, [pathname]);
+
   const content = (
     <>
-      <div className="lg:hidden fixed inset-0 -z-1 pointer-events-auto backdrop-blur-sm"></div>
-      <ul className="lg:hidden fixed top-[4.5rem] left-0 bottom-0 right-24 bg-primary text-white -z-1 flex flex-col pt-8 pl-6 gap-3 p-3">
+      <div className="lg:hidden fixed inset-0 z-[100] pointer-events-auto backdrop-blur-sm"></div>
+      <div className="lg:hidden fixed top-[4.5rem] left-0 bottom-0 right-24 bg-primary text-white z-[100] flex flex-col pt-8 pl-6 gap-3 p-3">
         {navLinks.map((link, index) => (
-          <li
+          <Link
+            href={link.link}
             key={index}
             className={`${
               pathname === link.link && "bg-white/30"
             } py-2 px-4 rounded-md hover:bg-white/30`}
           >
-            <a href={link.link}>{link.name}</a>
-          </li>
+            {link.name}
+          </Link>
         ))}
-      </ul>
+      </div>
     </>
   );
 
   return (
     <>
-      <div className="container mx-auto w-full flex sticky top-0 bg-white items-center justify-between py-3 md:px-6 px-12 z-[9999]">
-        <div onClick={toggleNavigation} className="lg:hidden">
+      <div className="container mx-auto w-full flex sticky top-0 bg-white items-center justify-between py-3 px-6 z-[9999]">
+        <div
+          onClick={toggleNavigation}
+          className="lg:hidden"
+          aria-expanded={openNavigation}
+        >
           <i
             className={`fas ${
               openNavigation ? "fa-times" : "fa-bars"
@@ -48,18 +58,19 @@ const Navbar = () => {
           ></i>
         </div>
         <Image src={Umuravalogo} alt="logo" width={150} className="w-[10rem]" />
-        <ul className="w-full flex-1 lg:flex items-center justify-center gap-4 text-sm font-semibold text-zinc-800/90 hidden">
+        <div className="w-full flex-1 lg:flex items-center justify-center gap-4 text-sm font-semibold text-zinc-800/90 hidden">
           {navLinks.map((link, index) => (
-            <li
+            <Link
+              href={link.link}
               key={index}
               className={`${
                 pathname === link.link && "text-primary"
               } hover:text-primary`}
             >
-              <a href={link.link}>{link.name}</a>
-            </li>
+              {link.name}
+            </Link>
           ))}
-        </ul>
+        </div>
         <button className="button bg-darkBlue text-white">
           Join<span className="max-md:hidden"> the Program</span>
         </button>

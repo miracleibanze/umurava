@@ -1,9 +1,18 @@
-const Heading = ({ title, title2, text, className }) => {
+import React from 'react';
+
+interface HeadingProps {
+  title: string;
+  title2?: string;
+  text?: string;
+  className?: string;
+}
+
+const Heading: React.FC<HeadingProps> = ({ title, title2, text, className }) => {
   return (
     <>
       <h3
         className={`h3 w-full leading-tight mb-2 text-center font-semibold mx-auto max-w-3xl ${
-          className && className
+          className ? className : ''
         }`}
       >
         {title}
@@ -16,7 +25,7 @@ const Heading = ({ title, title2, text, className }) => {
       </h3>
       <p
         className={`body-2 text-center text-zinc-500 w-full max-w-xl mx-auto mb-12 ${
-          className && className
+          className ? className : ''
         }`}
       >
         {text}
