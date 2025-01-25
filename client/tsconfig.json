@@ -126,7 +126,7 @@
     ".next/types/**/*.ts",
     "**/*.ts",
     "**/*.tsx"
-, "next.config.ts"  ],
+, "next.config.ts", "postcss.config.ts", "tailwind.config.js", "postcss.config.mjs", "tailwind.config.mjs"  ],
   "exclude": [
     "node_modules"
   ]

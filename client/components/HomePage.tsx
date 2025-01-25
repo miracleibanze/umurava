@@ -99,11 +99,11 @@ const ChallengeCard: FC<Challenge> = ({
   difficulty,
   deadline,
 }) => (
-  <>
+  <div>
     <div className="border border-blue-500/20 rounded-t-lg p-6">
       <div className="flex justify-between items-center mb-4 w-full aspect-video rounded-lg overflow-hidden relative">
         <Image
-          src="/path-to-image.jpg" // Ensure this is the correct path
+          src={umurava}
           alt="Umurava Logo"
           className="absolute inset-0"
           width={500}
@@ -133,7 +133,7 @@ const ChallengeCard: FC<Challenge> = ({
     <div className="bg-white text-blue-500 px-4 py-2 rounded-b-md border border-blue-500/20 border-t-none w-full">
       <button className="button bg-primary text-white">View Challenge</button>
     </div>
-  </>
+  </div>
 );
 
 const TestimonialCard: FC<Testimonial> = ({ name, title, testimonial }) => (
@@ -214,7 +214,7 @@ const HomePage: FC = () => {
 
         <div className="grid md:grid-cols-2 gap-8  text-white">
           <div className="p-6 rounded-lg shadow-md col-span-2 bg-primary">
-            <i className="fas fa-briefcase bg-white text-primary p-3 rounded-md"></i>
+            <i className="fas fa-briefcase bg-white text-primary p-5 rounded-md"></i>
             <p className="body-1 mt-4 font-semibold">
               Build a Strong Portfolio and Hands-On Experience
             </p>
@@ -227,7 +227,7 @@ const HomePage: FC = () => {
             </p>
           </div>
           <div className="bg-primary p-6 rounded-lg shadow-md">
-            <i className="fas fa-briefcase bg-white text-primary p-3 rounded-md"></i>
+            <i className="fas fa-briefcase bg-white text-primary p-5 rounded-md"></i>
             <p className="body-1 mt-4 font-semibold">
               Enhance Your Employment Path
             </p>
@@ -237,7 +237,7 @@ const HomePage: FC = () => {
             </p>
           </div>
           <div className="bg-primary p-6 rounded-lg shadow-md">
-            <i className="fas fa-briefcase bg-white text-primary p-3 rounded-md"></i>
+            <i className="fas fa-briefcase bg-white text-primary p-5 rounded-md"></i>
             <p className="body-1 mt-4 font-semibold">
               Earn Recognition and Prizes
             </p>
