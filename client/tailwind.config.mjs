@@ -23,7 +23,7 @@ const config = {
       addBase({});
       addComponents({
         ".container": {
-          "@apply md:max-w-[77.5rem] xl:max-w-[87.5rem] max-w-full max-sm:min-w-full":
+          "@apply w-full max-w-[95.5rem] max-sm:max-w-full max-sm:min-w-full":
             {},
         },
         ".h1": {
