@@ -5,7 +5,6 @@ import {
   image1,
   Image2,
   banner_img,
-  umurava,
   challengesImage,
   signup,
   students,
@@ -13,13 +12,8 @@ import {
 import { useState, FC } from "react";
 import Image from "next/image";
 import Heading from "@components/designs/Heading";
-
-interface Challenge {
-  title: string;
-  skills: string[];
-  difficulty: string;
-  deadline: string;
-}
+import ChallengeCard from "@components/challengeCard";
+import { challenges } from "@components/constants";
 
 interface Benefit {
   title: string;
@@ -43,27 +37,6 @@ const SkillChallenges: string[] = [
   "AI Machine Learning",
   "Web3",
   "Digital Marketing & Communication",
-];
-
-const challenges: Challenge[] = [
-  {
-    title: "Design a Dashboard for SokoFund",
-    skills: ["UX Design", "Research", "User Flow", "Sketch", "Figma"],
-    difficulty: "Beginner",
-    deadline: "15 Days",
-  },
-  {
-    title: "Design a Dashboard for SokoFund",
-    skills: ["UX Design", "Research", "User Flow", "Sketch", "Figma"],
-    difficulty: "Beginner",
-    deadline: "10 Days",
-  },
-  {
-    title: "Design a Dashboard for SokoFund",
-    skills: ["UX Design", "Research", "User Flow", "Sketch", "Figma"],
-    difficulty: "Beginner",
-    deadline: "5 Days",
-  },
 ];
 
 const benefits: Benefit[] = [
@@ -93,67 +66,6 @@ const benefits: Benefit[] = [
   },
 ];
 
-const ChallengeCard: FC<Challenge> = ({
-  title,
-  skills,
-  difficulty,
-  deadline,
-}) => (
-  <div>
-    <div className="border border-blue-500/20 rounded-t-lg p-6">
-      <div className="flex justify-between items-center mb-4 w-full aspect-video rounded-lg overflow-hidden relative">
-        <Image
-          src={umurava}
-          alt="Umurava Logo"
-          className="absolute inset-0"
-          width={500}
-          height={500}
-        />
-      </div>
-      <h3 className="body-1 font-semibold mb-2 leading-tight">{title}</h3>
-      <p className="text-sm font-semibold">
-        Skills Needed:
-        <br />
-        {skills.map((item, index) => (
-          <button
-            className="button m-1 border border-primary/60 !px-1 !py-0 !text-sm text-primary/70"
-            key={index}
-          >
-            {item}
-          </button>
-        ))}
-      </p>
-      <p className="text-sm">
-        <b>Difficulty Level:</b> {difficulty}
-      </p>
-      <p className="text-sm">
-        <b>Deadline:</b> {deadline}
-      </p>
-    </div>
-    <div className="bg-white text-blue-500 px-4 py-2 rounded-b-md border border-blue-500/20 border-t-none w-full">
-      <button className="button bg-primary text-white">View Challenge</button>
-    </div>
-  </div>
-);
-
-const TestimonialCard: FC<Testimonial> = ({ name, title, testimonial }) => (
-  <div className="min-w-[25rem] max-w-[25rem] px-5 border border-zinc-400 rounded-lg py-8">
-    <div className="w-full rounded-lg aspect-video bg-primary mb-4 flex items-center justify-center">
-      <span className="flex items-center justify-center bg-white/50 p-4 rounded-full aspect-square">
-        <i className="fas fa-play text-3xl text-white translate-x-[0.095rem]"></i>
-      </span>
-    </div>
-    <div className="flex">
-      <div className="w-10 aspect-square rounded-full bg-primary mr-3"></div>
-      <div className="flex-1 w-full">
-        <p className="body-2 font-semibold">{name}</p>
-        <p className="text-sm">{title}</p>
-      </div>
-    </div>
-  </div>
-);
-
-
 const testimonials: Testimonial[] = [
   {
     name: "Manzi Jack",
@@ -171,6 +83,23 @@ const testimonials: Testimonial[] = [
     testimonial: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
   },
 ];
+
+const TestimonialCard: FC<Testimonial> = ({ name, title, testimonial }) => (
+  <div className="min-w-[25rem] max-w-[25rem] px-5 border border-zinc-400 rounded-lg py-8">
+    <div className="w-full rounded-lg aspect-video bg-primary mb-4 flex items-center justify-center">
+      <span className="flex items-center justify-center bg-white/50 p-4 rounded-full aspect-square">
+        <i className="fas fa-play text-3xl text-white translate-x-[0.095rem]"></i>
+      </span>
+    </div>
+    <div className="flex">
+      <div className="w-10 aspect-square rounded-full bg-primary mr-3"></div>
+      <div className="flex-1 w-full">
+        <p className="body-2 font-semibold">{name}</p>
+        <p className="text-sm">{title}</p>
+      </div>
+    </div>
+  </div>
+);
 
 const Home: FC = () => {
   const [skillChallenge, setSkillChallenge] = useState<number>(0);
@@ -317,7 +246,7 @@ const Home: FC = () => {
         <div className="md:w-1/2 w-full flex flex-col items-start gap-8 px-4 py-8">
           <div className="bg-white py-6 px-4 rounded-md w-max mb-4 mt-8">
             <span className="w-7 aspect-square rounded-full p-2 font-bold bg-black text-white">
-            <span style={{ color: 'green' }}>S</span>f.
+              <span style={{ color: "green" }}>S</span>f.
             </span>
           </div>
           <p className="body-2 text-zinc-600 w-full max-w-md">
@@ -355,10 +284,13 @@ const Home: FC = () => {
         />
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:px-8">
-          {challenges.map((challenge, index) => (
-            <ChallengeCard key={index} {...challenge} />
-          ))}
+          {Array(3)
+            .fill("")
+            .map((_, index) => (
+              <ChallengeCard key={index} {...challenges[index]} />
+            ))}
         </div>
+
         <button className="mt-12 mb-24 border border-blue-500 hover:bg-blue-600 hover:text-white !text-blue-600 font-semibold px-12 py-4 rounded-lg block mx-auto">
           View More
         </button>

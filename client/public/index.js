@@ -20,6 +20,8 @@ import challengesImage from "./images/challenges.png";
 import signup from "./images/signup.png";
 import students from "./images/students.png";
 import footerLogo from "./images/footerLogo.png";
+import imageUmurava from "./images/imageUmurava.png";
+import challengeRoute from "./images/challengeRoute.png";
 
 export {
   Ared,
@@ -44,4 +46,6 @@ export {
   signup,
   students,
   footerLogo,
+  imageUmurava,
+  challengeRoute,
 };

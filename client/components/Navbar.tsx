@@ -52,7 +52,7 @@ const Navbar: FC = () => {
 
   return (
     <>
-      <div className="container mx-auto w-full flex sticky top-0 bg-white items-center justify-between py-3 px-6 z-[9999]">
+      <div className="container mx-auto w-full flex sticky top-0 bg-white items-center justify-between py-3 px-10 z-[9999]">
         <div
           onClick={toggleNavigation}
           className="lg:hidden"
