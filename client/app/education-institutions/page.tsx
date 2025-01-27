@@ -144,7 +144,7 @@ const page: FC = () => {
           ))}
         </div>
       </section>
-      <section className="container mx-auto py-16 px-4 md:px-12 mb-20">
+      <section className="container mx-auto py-16 px-6 md:px-12 mb-20">
         <Heading title="How Skills Challenges Program can be Integrated into your Learning Institution" />
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 px-4 mx-auto">
           <ol className="flex flex-col list-none px-4 gap-3 my-auto">

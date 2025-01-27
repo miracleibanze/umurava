@@ -141,8 +141,8 @@ const Home: FC = () => {
           text="Join Skills Challenge Program to accelerate your career growth and become part of africa's largest workforce at digital professionals."
         />
 
-        <div className="grid md:grid-cols-2 gap-8  text-white">
-          <div className="p-6 rounded-lg shadow-md col-span-2 bg-primary">
+        <div className="grid sm:grid-cols-2 gap-8  text-white">
+          <div className="p-6 rounded-lg shadow-md sm:col-span-2 bg-primary">
             <i className="fas fa-briefcase bg-white text-primary p-5 rounded-md"></i>
             <p className="body-1 mt-4 font-semibold">
               Build a Strong Portfolio and Hands-On Experience

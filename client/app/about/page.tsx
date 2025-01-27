@@ -74,8 +74,8 @@ const page: FC = () => {
           ))}
         </div>
       </section>
-      <section className="container mx-auto md:py-16 px-6 flex flex-col sm:flex-row gap-16">
-        <div className="w-full sm:w-1/2 pr-12">
+      <section className="container mx-auto py-16 md:px-12 px-6 flex flex-col sm:flex-row items-center lg:gap-16 gap-8">
+        <div className="w-full sm:w-1/2 lg:pr-12">
           <h3 className="h3 font-bold mb-6">
             Skills Challenges Program is built on the Umurava Talent Marketplace
             Platform
@@ -95,11 +95,11 @@ const page: FC = () => {
             Get Started
           </button>
         </div>
-        <div className="w-full sm:w-1/2 mt-4 sm:mt-0 sm:pl-20">
+        <div className="w-full sm:w-1/2 mt-4 sm:mt-0 flex-1">
           <Image
             src={challengeRoute}
             alt="Umurava Talent Marketplace"
-            className="rounded-lg shadow-md w-full max-w-[35rem] h-auto float-end"
+            className="rounded-lg shadow-md w-full lg:max-w-[35rem] h-auto float-end my-auto"
           />
         </div>
       </section>
