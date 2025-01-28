@@ -17,6 +17,8 @@ const config = {
         darkBlue: "#001A40",
         lightBlue: "#D0E0FC",
         lightGray: "#E4E7EC",
+        Gray: "#475367",
+        Green: '#0F973D',
       },
     },
   },

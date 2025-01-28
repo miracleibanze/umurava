@@ -20,7 +20,7 @@ const Sidebar: React.FC<SidebarProps> = ({ user }) => {
   ];
 
   return (
-    <div className="max-w-75 bg-primary text-white flex flex-col justify-between h-screen pr-1 pl-4 py-4">
+    <div className="min-w-75 h-full bg-primary text-white flex flex-col gap-80 pr-1 pl-4 py-4">
       <div>
         <div className="w-full flex items-center mb-5 mt-5 pl-6">
           <img 
@@ -43,7 +43,7 @@ const Sidebar: React.FC<SidebarProps> = ({ user }) => {
           </ul>
         </div>
       </div>
-      <div className="flex flex-col items-center mb-10 gap-2">
+      <div className="flex flex-col items-center mb-10">
         <ul className='w-full'>
           {buttonlinks.map((link) => (
             <li key={link.name} className="mb-4">
@@ -54,16 +54,18 @@ const Sidebar: React.FC<SidebarProps> = ({ user }) => {
             </li>
           ))}
         </ul>
-        <div className='w-full flex flex-row items-center gap-2'>
-          <div className="flex justify-start flex-row gap-2">
-            <div className="w-10 aspect-square rounded-full bg-white"></div>
-            <div className="">
-              <p>{user.name}</p>
-              <p className="text-sm text-gray-300">@{user.handle}</p>
+        <div className="w-full flex flex-row items-center justify-between mt-6">
+          <div className="flex flex-row gap-2">
+            <div className="flex flex-row items-center justify-center">
+              <img src="/images/Image.png" alt="User" className="rounded-full" />
             </div>
             <div className="">
-              <img src="/icons/sign-out.svg" alt="Settings" height={50} />
+              <p>Hilaire sh</p>
+              <p className="text-sm text-gray-300">hilaire@uidesign</p>
             </div>
+          </div>
+          <div className="mr-3">
+            <img src="/icons/sign-out.svg" alt="Sign-Out" height={50} />
           </div>
         </div>
       </div>
