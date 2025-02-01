@@ -55,7 +55,7 @@ export default function RootLayout({
           {showSidebar && <Sidebar />}
 
           <div
-            className={`flex-1 relative h-full ${
+            className={`flex-1 relative h-full px-3 ${
               !showSidebar && "min-h-[50vh]"
             } ${
               showSidebar && "flex flex-col h-full min-h-[100vh]"

@@ -48,7 +48,7 @@ const Page: FC = () => {
             {analytics.map((data, index) => (
               <div
                 key={index}
-                className={`bg-white rounded-lg p-6 border-2 border-zinc-100 flex items-center max-w-md justify-start ${
+                className={`bg-white rounded-lg p-6 border-2 border-zinc-100 flex items-center max-md:max-w-md justify-start ${
                   index === 0 || index === 1 ? "lg:col-span-3" : "lg:col-span-2"
                 } ${index === 0 ? "md:col-span-2" : "md:col-span-1"} relative
             ${index % 2 === 1 && "w-full ml-auto"}`}
@@ -88,7 +88,7 @@ const Page: FC = () => {
         </div>
       )}
 
-      <div className="flex flex-wrap items-center gap-3 justify-center mb-4">
+      <div className="flex flex-wrap items-center gap-3 mb-4">
         {!loadingChallenges ? (
           challenges.length > 0 ? (
             Array(3)
