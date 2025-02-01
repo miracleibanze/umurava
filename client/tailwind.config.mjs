@@ -15,6 +15,7 @@ const config = {
       colors: {
         primary: "#2B71F0",
         darkBlue: "#001A40",
+        Grey_light: "#344054",
       },
     },
   },

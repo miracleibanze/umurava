@@ -11,24 +11,23 @@ import ChallengeCard, {
 
 const Page: FC = () => {
   const dispatch = useDispatch<AppDispatch>();
-  const { challenges, loadingChallenges } = useSelector(
-    (state: RootState) => state.challenge
-  );
+  const { user, status, error } = useSelector((state: RootState) => state.user);
+  const { challenges, loadingChallenges } = useSelector((state: RootState) => state.challenge);
 
   const [filterIndex, setFilterIndex] = useState(0);
 
   const menu = [
-    { name: "All", number: challenges?.length },
+    { name: "All Challenge", number: challenges?.length },
     {
-      name: "Completed",
+      name: "Completed Challenge",
       number: challenges.filter((c) => c.status === "completed").length,
     },
     {
-      name: "Open",
+      name: "Open Challenge",
       number: challenges.filter((c) => c.status === "open").length,
     },
     {
-      name: "Ongoing",
+      name: "Ongoing Challenge",
       number: challenges.filter((c) => c.status === "ongoing").length,
     },
   ];
@@ -60,7 +59,7 @@ const Page: FC = () => {
       <p className="text-sm !text-zinc-400 mb-6">
         Join a challenge or a hackathon to gain valuable experience.
       </p>
-
+      {user?.role !== 'admin' ? (
       <div className="w-full flex items-center gap-3 flex-wrap">
         {menu.map((item, index) => (
           <button
@@ -88,6 +87,22 @@ const Page: FC = () => {
           </button>
         </Link>
       </div>
+      ):(
+        <div className="flex flex-row gap-2">
+          {menu.map((item, index)=>(
+            <button 
+            key={index}
+            onClick={() => handleFilter(index)}
+            className={`${index == filterIndex ? 'bg-primary/15' : ''} border text-Grey_light rounded-lg gap-2 border-primary/10 flex flex-row items-center justify-center px-3 py-2`}>
+              <i className=""></i>
+              <span className="text-sm">{item.name}</span>
+              <div className={`${index == filterIndex ? 'bg-primary text-white' : 'bg-primary/10'} text-xs flex-1 items-center justify-center px-2 rounded-r-lg rounded-l-lg`}>
+                {item.number}
+              </div>
+            </button>
+          ))}
+        </div>
+      )}
 
       <div className="w-full flex flex-wrap gap-3 py-12 justify-items-center">
         {loadingChallenges ? (

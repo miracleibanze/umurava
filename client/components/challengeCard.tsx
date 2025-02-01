@@ -90,7 +90,7 @@ const ChallengeCard: FC<Challenge> = ({
       </p>
       {difficulty && (
         <p className="text-[12px] text-zinc-600">
-          <b>Difficulty Level:</b> {difficulty}
+          <b>Seniority Level:</b> {difficulty}
         </p>
       )}
       {deadline && (

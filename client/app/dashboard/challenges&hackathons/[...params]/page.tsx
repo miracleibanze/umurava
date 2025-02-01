@@ -1,6 +1,7 @@
 "use client";
 
 import ChallengeDetails from "@components/ChallengeDetail";
+import TalentChallengeDetailsPage from "@components/talent/ChallengeDetailsPage";
 import EditChallenge from "@components/EditChallenge";
 import { useSelector } from "react-redux";
 import { AppDispatch, RootState } from "@redux/store";
@@ -11,6 +12,7 @@ import { useDispatch } from "react-redux";
 
 const Page: FC = () => {
   const dispatch = useDispatch<AppDispatch>();
+  const { user, status, error } = useSelector((state: RootState) => state.user);
   const { params } = useParams() as { params?: string[] }; // Explicitly type as an array
 
   const challengeId = params?.[1] || ""; // Get challenge ID safely
@@ -65,11 +67,14 @@ const Page: FC = () => {
     dispatch(fetchChallenges());
   }, [dispatch]);
 
-  return viewDetails ? (
+  return user?.role !== 'admin' ? (
+  viewDetails ? (
     <ChallengeDetails challenge={challenge} />
   ) : (
     <EditChallenge challenge={challenge} />
-  );
-};
+  )) : (
+    <TalentChallengeDetailsPage/>
+  )
+}
 
 export default Page;
