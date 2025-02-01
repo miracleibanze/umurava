@@ -3,14 +3,15 @@ import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 import axios from "axios";
 
 // Define the type for the user
-interface User {
-  userId: string;
-  fullName: string;
+export interface User {
+  userId?: string;
+  names: string;
   username: string;
   email: string;
+  password: string;
   phoneNumber: string;
   role: string;
-  profile: {
+  profile?: {
     image: string;
     address?: string;
     interests?: string[];

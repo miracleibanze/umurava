@@ -30,14 +30,14 @@ export interface Challenge {
 
 interface ChallengeState {
   challenges: Challenge[];
-  loading: boolean;
+  loadingChallenges: boolean;
   error: string | null;
   success: boolean;
 }
 
 const initialState: ChallengeState = {
   challenges: [],
-  loading: false,
+  loadingChallenges: false,
   error: null,
   success: false,
 };
@@ -104,48 +104,48 @@ const challengeSlice = createSlice({
     builder
       // Fetch Challenges
       .addCase(fetchChallenges.pending, (state) => {
-        state.loading = true;
+        state.loadingChallenges = true;
         state.error = null;
       })
       .addCase(fetchChallenges.fulfilled, (state, action) => {
-        state.loading = false;
+        state.loadingChallenges = false;
         state.challenges = action.payload;
       })
       .addCase(fetchChallenges.rejected, (state, action) => {
-        state.loading = false;
+        state.loadingChallenges = false;
         state.error = action.payload as string;
       })
 
       // Create Challenge
       .addCase(createChallenge.pending, (state) => {
-        state.loading = true;
+        state.loadingChallenges = true;
         state.success = false;
         state.error = null;
       })
       .addCase(createChallenge.fulfilled, (state, action) => {
-        state.loading = false;
+        state.loadingChallenges = false;
         state.success = true;
         state.challenges.push(action.payload);
       })
       .addCase(createChallenge.rejected, (state, action) => {
-        state.loading = false;
+        state.loadingChallenges = false;
         state.error = action.payload as string;
       })
 
       // Edit Challenge
       .addCase(editChallenge.pending, (state) => {
-        state.loading = true;
+        state.loadingChallenges = true;
         state.error = null;
       })
       .addCase(editChallenge.fulfilled, (state, action) => {
-        state.loading = false;
+        state.loadingChallenges = false;
         state.success = true;
         state.challenges = state.challenges.map((challenge) =>
           challenge._id === action.payload._id ? action.payload : challenge
         );
       })
       .addCase(editChallenge.rejected, (state, action) => {
-        state.loading = false;
+        state.loadingChallenges = false;
         state.error = action.payload as string;
       });
   },

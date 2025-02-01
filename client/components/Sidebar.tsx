@@ -25,7 +25,7 @@ const sidebarLinks: link[] = [
   {
     name: "Community",
     href: "/dashboard/community",
-    icon: "fas fa-user-plus",
+    icon: "fas fa-users",
   },
 ];
 const sidebarUtilities: link[] = [
@@ -52,10 +52,14 @@ const Sidebar: FC = () => {
   const pathname = usePathname();
 
   return (
-    <div className="sticky top-0 h-screen left-0 w-full lg:max-w-[19rem] md:max-w-[14rem] max-w-[4rem] bg-primary text-white py-4 px-2 flex flex-col justify-between">
-      <div className="w-full mb-4">
-        <Image src={whiteLogo} alt="logo" className="h-8 w-auto mb-8" />
-        <ul>
+    <div className="sm:sticky fixed z-[100] sm:top-0 sm:h-screen sm:left-0 w-full lg:max-w-[19rem] md:max-w-[14rem] sm:max-w-[4rem] bg-primary text-white sm:py-4 px-2 flex sm:flex-col justify-between bottom-0 max-sm🇦🇫 h-[4rem]">
+      <div className="w-full sm:mb-4 max-sm:flex">
+        <Image
+          src={whiteLogo}
+          alt="logo"
+          className="h-8 w-auto mb-8 max-sm:hidden "
+        />
+        <ul className="max-sm:hidden">
           {sidebarLinks.map((item, index) => (
             <Link href={item.href} key={index}>
               <li
@@ -75,8 +79,38 @@ const Sidebar: FC = () => {
             </Link>
           ))}
         </ul>
+        <ul className="grid w-full grid-cols-4 sm:hidden">
+          {sidebarLinks.map((item, index) => (
+            <Link href={item.href} key={index}>
+              <li
+                className={`w-full ${
+                  pathname === item.href
+                    ? "!bg-white/30"
+                    : pathname.startsWith(item.href) &&
+                      index !== 0 &&
+                      "!bg-white/30"
+                } text-sm rounded-sm flex hover:bg-white/20 sm:hidden h-full items-center justify-center flex-col`}
+              >
+                <i className={`${item.icon} text-2xl mb-2`}></i>
+              </li>
+            </Link>
+          ))}
+          <div className="w-full h-full flex items-center justify-center">
+            {user?.profile?.image ? (
+              <Image
+                src={user.profile.image} // Use the determined image source
+                alt="profile image"
+                width={40} // Set appropriate width and height
+                height={40}
+                className="h-10 !aspect-square rounded-full flex-0 object-cover"
+              />
+            ) : (
+              <i className="fas fa-user p-3 text-primary bg-white/50 rounded-full flex-0 mx-auto"></i>
+            )}
+          </div>
+        </ul>
       </div>
-      <div className="w-full mb-4">
+      <div className="w-full mb-4 max-sm:hidden">
         <ul>
           {sidebarUtilities.map((item, index) => (
             <Link href={item.href} key={index}>
@@ -112,7 +146,7 @@ const Sidebar: FC = () => {
             </Link>
           ))}
         </ul>
-        <div className="w-full flex items-center gap-2 flex-wrap md:justify-end justify-center">
+        <div className="w-full sm:flex items-center gap-2 flex-wrap md:justify-end justify-center hidden">
           {user?.profile?.image ? (
             <Image
               src={user.profile.image} // Use the determined image source
@@ -125,7 +159,7 @@ const Sidebar: FC = () => {
             <i className="fas fa-user p-3 text-primary bg-white/50 rounded-full flex-0"></i>
           )}
           <div className="flex-1 w-full my-auto md:flex flex-col items-start hidden">
-            <p className="body-2 font-semibold">{user?.fullName}</p>
+            <p className="body-2 font-semibold">{user?.names}</p>
             <p className="text-sm leading-none text-white/70">{user?.email}</p>
           </div>
           <div className="md:!w-7 flex-0 flex w-full items-center justify-center">

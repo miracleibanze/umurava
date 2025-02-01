@@ -283,7 +283,7 @@ const Home: FC = () => {
           text="Join Skills Challenges Program to accelerate your career growth and become part of Africa's largest workforce of digital professionals."
         />
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:px-8">
+        <div className="flex flex-wrap items-center justify-center gap-6 md:px-8">
           {Array(3)
             .fill("")
             .map((_, index) => (
@@ -326,10 +326,10 @@ const Home: FC = () => {
         </section>
       </section>
       <section className="container mx-auto py-16 px-4">
-        <h2 className="h2 font-bold mb-2 px-3">
+        <h3 className="h3 font-bold mb-2 px-3">
           Users are in Love with Skills <br className="max-md:hidden" />
           Challenges Program
-        </h2>
+        </h3>
         <p className="text-gray-500 text-sm mb-12 px-4">
           See what our clients say about working with us. Their success{" "}
           <br className="max-md:hidden" />

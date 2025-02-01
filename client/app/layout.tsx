@@ -23,9 +23,12 @@ export default function RootLayout({
 }) {
   const pathname = usePathname();
   const showNavbar =
-    !pathname.startsWith("/dashboard") &&
-    !pathname.startsWith("/register") &&
-    !pathname.startsWith("/help");
+    pathname === "/" ||
+    pathname.startsWith("/challenges&Hackathons") ||
+    pathname.startsWith("/about") ||
+    pathname.startsWith("/contact") ||
+    pathname.startsWith("/education-institutions");
+
   const showSidebar = pathname.startsWith("/dashboard");
 
   useEffect(() => {
@@ -54,7 +57,9 @@ export default function RootLayout({
           <div
             className={`flex-1 relative h-full ${
               !showSidebar && "min-h-[50vh]"
-            } ${showSidebar && "flex flex-col h-full min-h-[100vh]"}`}
+            } ${
+              showSidebar && "flex flex-col h-full min-h-[100vh]"
+            } max-sm:pb-[4rem]`}
           >
             {children}
           </div>

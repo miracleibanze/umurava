@@ -11,7 +11,7 @@ import ChallengeCard, {
 
 const Page: FC = () => {
   const dispatch = useDispatch<AppDispatch>();
-  const { challenges, loading } = useSelector(
+  const { challenges, loadingChallenges } = useSelector(
     (state: RootState) => state.challenge
   );
 
@@ -90,7 +90,7 @@ const Page: FC = () => {
       </div>
 
       <div className="w-full flex flex-wrap gap-3 py-12 justify-center justify-items-center">
-        {loading ? (
+        {loadingChallenges ? (
           <div className="px-4 p-8 flex flex-wrap gap-3 justify-center">
             {Array(6)
               .fill("")
@@ -99,16 +99,19 @@ const Page: FC = () => {
               ))}
           </div>
         ) : filteredChallenges().length > 0 ? (
-          filteredChallenges().map((challenge, index) => (
-            <ChallengeCard {...challenge} key={index} />
-          ))
+          <>
+            {filteredChallenges().map((challenge, index) => (
+              <ChallengeCard {...challenge} key={index} />
+            ))}
+            <div className="w-full flex justify-end md:px-12 px-6">
+              <button className="button bg-primary text-white !px-8">
+                Next
+              </button>
+            </div>
+          </>
         ) : (
           <p className="text-center text-gray-500">No challenges found.</p>
         )}
-      </div>
-
-      <div className="w-full flex justify-end md:px-12 px-6">
-        <button className="button bg-primary text-white !px-8">Next</button>
       </div>
     </section>
   );

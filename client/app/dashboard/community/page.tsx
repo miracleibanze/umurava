@@ -92,17 +92,16 @@ const Page: FC = () => {
 
   return (
     <div className="p-5 text-zinc-700">
-      <div className="w-full flex justify-between">
-        <h1 className="text-2xl font-bold mb-4">Community Management </h1>
-        <div className="w-max">
-          <button
-            className="button text-white bg-primary"
-            onClick={() => setIsCreateModalOpen(true)}
-          >
-            <i className="fas fa-plus"></i> Create
-            <span className="max-md:hidden"> community</span>
-          </button>
-        </div>
+      <h1 className="text-2xl font-bold mb-4 flex-0 my-4">
+        Community Management
+      </h1>
+      <div className="w-full flex justify-end items-center mb-5">
+        <button
+          className="button text-white bg-primary"
+          onClick={() => setIsCreateModalOpen(true)}
+        >
+          <i className="fas fa-plus"></i> Create community
+        </button>
       </div>
       {isCreateModalOpen && (
         <CommunityForm

@@ -214,7 +214,7 @@ export const challenges: Challenge[] = [
 
 interface User {
   userId: string;
-  fullName: string;
+  name: string;
   username: string;
   email: string;
   phoneNumber: string;
@@ -258,9 +258,10 @@ interface User {
 
 export const myUser = {
   userId: "12345",
-  fullName: "John Doe",
+  names: "John Doe",
   username: "John",
   email: "johndoe@example.com",
+  password: "12345",
   phoneNumber: "+250788123456",
   role: "admin",
 
